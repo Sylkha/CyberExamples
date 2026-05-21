@@ -43,7 +43,7 @@ puts Base64.encode64(payload)
 
 
 # Ruby Marshal Deserialization leading to RCE
-
+# The application uses `Marshal.load` on user-supplied data. This allows attackers to exploit gadget chains present in internal Ruby and RubyGems classes to execute arbitrary commands.
 
 
 
